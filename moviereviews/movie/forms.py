@@ -8,7 +8,7 @@ class ReviewForm(ModelForm):
         self.fields['watchAgain'].widget.attrs.update( {'class': 'form-check-input'})
     class Meta:
         model = Review
-        fields = ['text','watchAgain']
+        fields = ['text', 'watchAgain']
         labels = {
         'watchAgain': ('Watch Again')
         }

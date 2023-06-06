@@ -8,14 +8,12 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request: HttpRequest):
-    searchTerm = request.GET.get('searchMovie')
-    if searchTerm:
-        movies = Movie.objects.filter(title__icontains=searchTerm)
+    if search_term := request.GET.get('searchMovie'):
+        movies = Movie.objects.filter(title__icontains=search_term)
     else:
         movies = Movie.objects.all()
-    movies = Movie.objects.all()
     return render(request, 'movie/home.html',
-        {'searchTerm': searchTerm, 'movies': movies})
+        {'searchTerm': search_term, 'movies': movies})
 
 
 def detail(request, movie_id):
