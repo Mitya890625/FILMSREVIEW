@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 
-
+#signup
 @csrf_exempt
 def signupaccount(request):
     if request.method == 'GET':
