@@ -5,27 +5,31 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect
 from django.db import IntegrityError
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def signupaccount(request):
     if request.method == 'GET':
         return render(request, 'accounts/signupaccount.html', 
-                    {'form':UserCreateForm})
-    if request.POST['password1'] == request.POST['password2']:
+                    {'form': UserCreateForm})
+    if request.POST.get('password1') == request.POST.get('password2'):
         try:
             user = User.objects.create_user(
-                request.POST['username'],
-                password= request.POST['password1'])
+                username=request.POST.get('username'),
+                password=request.POST.get('password1')
+            )
             user.save()
             login(request, user)
             return redirect('/home')
         except IntegrityError:
             return render(request,
                 'accounts/signupaccount.html',
-                {'form':UserCreateForm,
+                {'form': UserCreateForm,
                 'error':'Username already taken. Choose new username.'})
     else:
         return render(request, 'accounts/signupaccount.html',
-        {'form':UserCreateForm,
+        {'form': UserCreateForm,
         'error':'Passwords do not match'})
     
 def logoutaccount(request):
@@ -39,8 +43,8 @@ def loginaccount(request):
             {'form': AuthenticationForm})
     else:
         user = authenticate(request,
-            username=request.POST['username'],
-            password=request.POST['password'])
+            username=request.POST.get('username'),
+            password=request.POST.get('password'))
         if user is None:
             return render(request,'accounts/loginaccount.html',
                 {'form': AuthenticationForm(),
