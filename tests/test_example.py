@@ -8,19 +8,31 @@ def test_get() -> None:
     url: str = f"{SERVER}/home/"
     resp: httpx = httpx.get(url)
     assert resp.status_code == 200
+def test_signup_form() -> None:
+    url: str = f"{SERVER}/accounts/signupaccount/"
+    resp = httpx.get(url)
+    assert resp.status_code == 200
+    user_data = {
+        "username": "user3",
+        "password": "password3",
+        "password2": "password3",
+    }
+    resp = httpx.post(url=url, data=user_data)
+    resp.status_code = 302
 def test_user_behavior() -> None:
     # USER VISITS HOMEPAGE
     url: str = f"{SERVER}/"
     resp = httpx.get(url)
     assert resp.status_code == 200
     # USER LOGINS
-    url: str = f"{SERVER}/accounts/signupaccount/"
+    url: str = f"{SERVER}/accounts/login/"
     resp = httpx.get(url)
     assert resp.status_code == 200
-    user = "user1"
-    password = "password1"
-    resp = httpx.post(url=url, content=user)
-    resp = httpx.post(url=url, content=password)
+    user_data = {
+        "username": "user3",
+        "password": "password3"
+             }
+    resp = httpx.post(url=url, data=user_data)
     resp.status_code = 302
     # USER VISITS PARTICULAR MOVIE
     url = f"{SERVER}/23c30cd3-49e8-433a-a460-0aed26f0a92a"
@@ -29,23 +41,40 @@ def test_user_behavior() -> None:
     # USER WANTS TO ADD REVIEW
     url = f"{SERVER}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create"
     resp = httpx.get(url)
-    assert resp.status_code == 200
+    assert resp.status_code == 302
+    user_data = {
+        "username": "user3",
+        "password": "password3"
+    }
+    resp = httpx.post(url=url, data=user_data)
+    resp.status_code = 302
 
-def test_get_all_movies() -> None:
+def test_movie_crud() -> None:
     url: str = f"{SERVER}/"
     resp = httpx.get(url)
     assert resp.status_code == 200
+    new_movie_data = {
+        "title": "movie1",
+        "description": "opus mupus",
+    }
+    new_movie_image = {
+        "image": open("C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/back-to-the-future_poster.jpg", 'rb')
+    }
+    resp = httpx.post(url=f"{url}/movie/create/", data=new_movie_data, files=new_movie_image)
+    assert resp.status_code == 201
+    movie_id = json.loads(resp.text).get('id')
+    url: str = f"{SERVER}/movie/{movie_id}/delete/"
+    resp = httpx.delete(url)
+    assert resp.status_code == 204
+
 def test_get_review() -> None:
-    url = f"{SERVER}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create"
+    url: str = f"{SERVER}/accounts/login/"
     resp = httpx.get(url)
     assert resp.status_code == 200
-def test_create_movie() -> None:
-    url: str = f"{SERVER}/movie/create/"
-    new_movie = {
-        "title": "Back To The Future",
-        "description": "Science-fiction about time travel",
-        "image": "http://localhost:8000/media/movie/images/back-to-the-future_poster_Tl9pr6s.jpg"
+    user_data = {
+        "username": "user3",
+        "password": "password3"
     }
-    resp = httpx.post(url=url, content=json.dumps(new_movie))
-    assert resp.status_code == 201
-    assert resp.text == json.dumps(new_movie)
+    resp = httpx.post(url=url, data=user_data)
+    resp.status_code = 302
+
