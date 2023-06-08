@@ -1,13 +1,16 @@
-import pytest
 import httpx
 import json
 
 
 SERVER = "http://localhost:8000"
+
+
 def test_get() -> None:
     url: str = f"{SERVER}/home/"
     resp: httpx = httpx.get(url)
     assert resp.status_code == 200
+
+
 def test_signup_form() -> None:
     url: str = f"{SERVER}/accounts/signupaccount/"
     resp = httpx.get(url)
@@ -19,6 +22,8 @@ def test_signup_form() -> None:
     }
     resp = httpx.post(url=url, data=user_data)
     resp.status_code = 302
+
+
 def test_user_behavior() -> None:
     # USER VISITS HOMEPAGE
     url: str = f"{SERVER}/"
@@ -49,6 +54,7 @@ def test_user_behavior() -> None:
     resp = httpx.post(url=url, data=user_data)
     resp.status_code = 302
 
+
 def test_movie_crud() -> None:
     url: str = f"{SERVER}/"
     resp = httpx.get(url)
@@ -67,6 +73,7 @@ def test_movie_crud() -> None:
     resp = httpx.delete(url)
     assert resp.status_code == 204
 
+
 def test_get_review() -> None:
     url: str = f"{SERVER}/accounts/login/"
     resp = httpx.get(url)
@@ -77,4 +84,3 @@ def test_get_review() -> None:
     }
     resp = httpx.post(url=url, data=user_data)
     resp.status_code = 302
-

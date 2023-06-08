@@ -7,12 +7,14 @@ from django.shortcuts import redirect
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 
-#signup
+# signup
+
+
 @csrf_exempt
 def signupaccount(request):
     if request.method == 'GET':
-        return render(request, 'accounts/signupaccount.html', 
-                    {'form': UserCreateForm})
+        return render(request, 'accounts/signupaccount.html',
+                      {'form': UserCreateForm})
     if request.POST.get('password1') == request.POST.get('password2'):
         try:
             user = User.objects.create_user(
@@ -23,32 +25,49 @@ def signupaccount(request):
             login(request, user)
             return redirect('/home')
         except IntegrityError:
-            return render(request,
+            return render(
+                request,
                 'accounts/signupaccount.html',
-                {'form': UserCreateForm,
-                'error':'Username already taken. Choose new username.'})
+                {
+                    'form': UserCreateForm,
+                    'error': 'Username already taken. Choose new username.'
+                }
+            )
     else:
-        return render(request, 'accounts/signupaccount.html',
-        {'form': UserCreateForm,
-        'error':'Passwords do not match'})
-    
+        return render(
+            request, 'accounts/signupaccount.html',
+            {
+                'form': UserCreateForm,
+                'error': 'Passwords do not match'
+            }
+        )
+
+
 def logoutaccount(request):
     logout(request)
     return redirect('/home')
 
+
 @csrf_exempt
 def loginaccount(request):
     if request.method == 'GET':
-        return render(request, 'accounts/loginaccount.html',
+        return render(
+            request, 'accounts/loginaccount.html',
             {'form': AuthenticationForm})
     else:
-        user = authenticate(request,
+        user = authenticate(
+            request,
             username=request.POST.get('username'),
-            password=request.POST.get('password'))
+            password=request.POST.get('password')
+        )
         if user is None:
-            return render(request,'accounts/loginaccount.html',
-                {'form': AuthenticationForm(),
-                'error': 'username and password do not match'})
+            return render(
+                request, 'accounts/loginaccount.html',
+                {
+                    'form': AuthenticationForm(),
+                    'error': 'username and password do not match'
+                }
+            )
         else:
             login(request, user)
             return redirect('/home')

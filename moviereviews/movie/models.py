@@ -12,6 +12,8 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+
+
 class Review(models.Model):
     text = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
