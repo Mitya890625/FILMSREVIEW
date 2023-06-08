@@ -5,6 +5,7 @@ from .forms import ReviewForm
 from rest_framework import generics
 from .serializers import MovieSerializer
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request: HttpRequest):
@@ -21,6 +22,7 @@ def detail(request, movie_id):
     reviews = Review.objects.filter(movie=movie)
     return render(request, 'movie/detail.html',
                   {'movie': movie, 'reviews': reviews})
+@csrf_exempt
 @login_required
 def createreview(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)

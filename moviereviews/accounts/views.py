@@ -36,7 +36,7 @@ def logoutaccount(request):
     logout(request)
     return redirect('/home')
 
-
+@csrf_exempt
 def loginaccount(request):
     if request.method == 'GET':
         return render(request, 'accounts/loginaccount.html',
