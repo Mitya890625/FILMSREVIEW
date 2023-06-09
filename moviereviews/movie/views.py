@@ -6,7 +6,7 @@ from rest_framework import generics
 from .serializers import MovieSerializer
 from django.contrib.auth.decorators import login_required
 
-
+#check actions
 def home(request: HttpRequest):
     if search_term := request.GET.get('searchMovie'):
         movies = Movie.objects.filter(title__icontains=search_term)
@@ -54,10 +54,14 @@ def updatereview(request, review_id):
             form.save()
             return redirect('detail', review.movie.id)
         except ValueError:
-            return render(request,
+            return render(
+                            request,
                             'movie/updatereview.html',
-                            {'review': review, 'form': form,
-                            'error': 'Bad data in form'})
+                            {
+                                'review': review, 'form': form,
+                                'error': 'Bad data in form'
+                            }
+                          )
 
 
 @login_required
