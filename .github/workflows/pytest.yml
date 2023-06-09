@@ -2,7 +2,8 @@ on:
   push:
     branches: [main]
   pull_request:
-
+env:
+  SECRET_KEY: 1
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -65,8 +66,7 @@ jobs:
       - name: 🚀 Web server is up.
         run: poetry run python3 manage.py runserver
         working-directory: moviereviews/
-        env:
-          SECRET-KEY: 1
+
 
 
       # And finally run tests. I'm using pytest and all my pytest config is in my `pyproject.toml`
