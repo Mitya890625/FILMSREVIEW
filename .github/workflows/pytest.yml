@@ -3,6 +3,7 @@ on:
     branches: [main]
   pull_request:
 env:
+  DATABASE_URL: 1
   SECRET_KEY: 1
   MODE_DEBUG: 1
 jobs:
