@@ -4,6 +4,7 @@ on:
   pull_request:
 env:
   SECRET_KEY: 1
+  MODE_DEBUG: 1
 jobs:
   test:
     runs-on: ubuntu-latest
