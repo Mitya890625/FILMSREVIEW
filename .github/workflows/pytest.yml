@@ -63,8 +63,6 @@ jobs:
       # they'll be installed and working.
       - run: poetry install --no-interaction
       - name: 🚀 Web server is up.
-        env:
-          SECRET_KEY=django-insecure-l0-!y4wt4+-gcsevnfpsg2w!du1d!2gb%!h%43lzhah%$0#y2v
         run: poetry run python3 manage.py runserver
         working-directory: moviereviews/
 
