@@ -7,9 +7,9 @@ urlpatterns = [
     path('', views.MovieList.as_view(), name='all'),
     path('movie/<uuid:pk>/detail', views.MovieDetail.as_view(), name='movie'),
     path('movie/create/', views.MovieList.as_view(), name='movie_create'),
-    path('movie/<uuid:pk>/update/', views.MovieDetail.as_view(), name='movie_update'),
-    path('movie/<uuid:pk>/delete/', views.MovieDetail.as_view(), name='movie_delete'),
+    path('movie/<uuid:pk>/update/', views.MovieDetail.as_view(), name='movie_update'), # noqa E501
+    path('movie/<uuid:pk>/delete/', views.MovieDetail.as_view(), name='movie_delete'), # noqa E501
     path('home/', views.home),
     path('review/<int:review_id>', views.updatereview, name='updatereview'),
-    path('review/<int:review_id>/delete', views.deletereview, name='deletereview'),
+    path('review/<int:review_id>/delete', views.deletereview, name='deletereview'), # noqa E501
 ]

@@ -64,9 +64,9 @@ def test_movie_crud() -> None:
         "description": "opus mupus",
     }
     new_movie_image = {
-        "image": open("C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/back-to-the-future_poster.jpg", 'rb')
+        "image": open("C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/back-to-the-future_poster.jpg", 'rb') # noqa E501
     }
-    resp = httpx.post(url=f"{url}/movie/create/", data=new_movie_data, files=new_movie_image)
+    resp = httpx.post(url=f"{url}/movie/create/", data=new_movie_data, files=new_movie_image) # noqa E501
     assert resp.status_code == 201
     movie_id = json.loads(resp.text).get('id')
     url: str = f"{SERVER}/movie/{movie_id}/delete/"
