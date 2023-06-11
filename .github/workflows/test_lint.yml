@@ -39,6 +39,9 @@ jobs:
 
      - name: install dependencies
        run: poetry install
+     - name: start server
+       run: poetry run python3 manage.py runserver
+       working-directory: moviereviews/
 
      - name: testing
        run: poetry run pytest
