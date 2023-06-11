@@ -10,14 +10,17 @@ jobs:
    steps:
      - name: Checkout
        uses: actions/checkout@v3
+
      - name: Install Poetry
        uses: snok/install-poetry@v1
-     - name: install python
+
      - uses: actions/setup-python@v3
        with:
         python-version: 3.10.8
+
      - name: install dependencies
        run: poetry install
+
      - name: run linting
        run: poetry run flake8
  test:
@@ -26,14 +29,17 @@ jobs:
    steps:
      - name: Checkout
        uses: actions/checkout@v3
+
      - name: Install Poetry
        uses: snok/install-poetry@v1
-     - name: install python
+
      - uses: actions/setup-python@v3
        with:
          python-version: 3.10.8
+
      - name: install dependencies
        run: poetry install
+
      - name: testing
        run: poetry run pytest
 
