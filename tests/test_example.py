@@ -48,12 +48,6 @@ def test_user_behavior() -> None:
     url = f"{SERVER}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create"
     resp = httpx.get(url, headers={"Cookie": f"sessionid={session_id}"})
     assert resp.status_code == 200
-    # user_data = {
-    #     "username": "user3",
-    #     "password": "password3"
-    # }
-    # resp = httpx.post(url=url, data=user_data, headers={"sessionid": session_id})
-    # resp.status_code = 200
 
 
 def test_movie_crud() -> None:
