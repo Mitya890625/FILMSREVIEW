@@ -1,0 +1,39 @@
+name: Linting and Testing
+on: push
+env:
+  DATABASE_URL: 1
+  SECRET_KEY: 1
+  MODE_DEBUG: 1
+jobs:
+ lint:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+     - name: Install Poetry
+       uses: snok/install-poetry@v1
+     - name: install python
+     - uses: actions/setup-python@v3
+       with:
+        python-version: 3.10.8
+     - name: install dependencies
+       run: poetry install
+     - name: run linting
+       run: poetry run flake8
+ test:
+   needs: [lint]
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+     - name: Install Poetry
+       uses: snok/install-poetry@v1
+     - name: install python
+     - uses: actions/setup-python@v3
+       with:
+         python-version: 3.10.8
+     - name: install dependencies
+       run: poetry install
+     - name: testing
+       run: poetry run pytest
+
