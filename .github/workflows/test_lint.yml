@@ -47,7 +47,8 @@ jobs:
         psql ${{ secrets.DATABASE_URL }} -c "CREATE DATABASE moviedb1;"
 
      - name: Make migrations
-     - run: poetry run python3 manage.py migrate
+       run: poetry run python3 manage.py migrate
+       working-directory: moviereviews/
 
      - name: Start server
        run: poetry run python3 manage.py runserver
