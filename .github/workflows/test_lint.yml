@@ -1,9 +1,9 @@
 name: Linting and Testing
 on: push
 env:
-  DATABASE_URL: sqlite://
-  SECRET_KEY: 1
-  MODE_DEBUG: 1
+  DATABASE_URL: ${{secrets.DATABASE_URL}}
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
+  MODE_DEBUG: ${{secrets.MODE_DEBUG}}
 jobs:
  lint:
    runs-on: ubuntu-latest
@@ -37,16 +37,22 @@ jobs:
        with:
          python-version: 3.10.8
 
-     - name: install dependencies
+     - name: Install dependencies
        run: poetry install
-#     - uses: actions/setup-sqlite@v1
-#       with:
-#         sqlite-version: 3.40.0
-#         sqlite-year: 2022
-     - name: start server
+
+     - name: Set up PostgreSQL
+       run: |
+        sudo apt-get update
+        sudo apt-get install postgresql
+        psql ${{ secrets.DATABASE_URL }} -c "CREATE DATABASE moviedb1;"
+
+     - name: Make migrations
+     - run: poetry run python3 manage.py migrate
+
+     - name: Start server
        run: poetry run python3 manage.py runserver
        working-directory: moviereviews/
 
-     - name: testing
+     - name: Testing
        run: poetry run pytest
 
