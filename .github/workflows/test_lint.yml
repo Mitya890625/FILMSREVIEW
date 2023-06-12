@@ -40,11 +40,12 @@ jobs:
      - name: Install dependencies
        run: poetry install
 
-     - name: Set up PostgreSQL
-       run: |
-        sudo apt-get update
-        sudo apt-get install postgresql
-        psql ${{ secrets.DATABASE_URL }} -c "CREATE DATABASE moviedb1;"
+     - name: Set up Sqlite3
+       uses: actions/setup-sqlite@v1
+       with:
+        sqlite-version: 3.40.0
+        sqlite-year: 2022
+       run: sqlite3 database.db
 
      - name: Make migrations
        run: poetry run python3 manage.py migrate
