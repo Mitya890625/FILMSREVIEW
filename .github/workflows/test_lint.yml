@@ -1,7 +1,7 @@
 name: Linting and Testing
 on: push
 env:
-  DATABASE_URL: ${{secrets.DATABASE_URL}}
+  DATABASE_URL: sqlite://
   SECRET_KEY: ${{secrets.SECRET_KEY}}
   MODE_DEBUG: ${{secrets.MODE_DEBUG}}
 jobs:
