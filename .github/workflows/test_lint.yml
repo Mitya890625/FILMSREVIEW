@@ -1,0 +1,56 @@
+name: Linting and Testing
+on: push
+env:
+  DATABASE_URL: sqlite://
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
+  MODE_DEBUG: ${{secrets.MODE_DEBUG}}
+jobs:
+ lint:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+
+     - name: Install Poetry
+       uses: snok/install-poetry@v1
+
+     - uses: actions/setup-python@v3
+       with:
+        python-version: 3.10.8
+
+     - name: install dependencies
+       run: poetry install
+
+     - name: run linting
+       run: poetry run flake8
+ test:
+   needs: [lint]
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+
+     - name: Install Poetry
+       uses: snok/install-poetry@v1
+
+     - uses: actions/setup-python@v3
+       with:
+         python-version: 3.10.8
+
+     - name: Install dependencies
+       run: poetry install
+
+     - name: Set up Sqlite3
+       run: sqlite3 database.db
+
+     - name: Make migrations
+       run: poetry run python3 manage.py migrate
+       working-directory: moviereviews/
+
+     - name: Start server
+       run: poetry run python3 manage.py runserver &
+       working-directory: moviereviews/
+
+     - name: Testing
+       run: poetry run pytest
+

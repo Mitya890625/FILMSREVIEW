@@ -38,11 +38,11 @@ def createreview(request, movie_id):
     else:
         try:
             form = ReviewForm(request.POST)
-            newReview = form.save(commit=False)
-            newReview.user = request.user
-            newReview.movie = movie
-            newReview.save()
-            return redirect('detail', newReview.movie.id)
+            new_review = form.save(commit=False)
+            new_review.user = request.user
+            new_review.movie = movie
+            new_review.save()
+            return redirect('detail', new_review.movie.id)
         except ValueError:
             return render(
                 request, 'movie/createreview.html',
