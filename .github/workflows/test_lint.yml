@@ -1,7 +1,7 @@
 name: Linting and Testing
 on: push
 env:
-  DATABASE_URL: sqlite
+  DATABASE_URL: sqlite://
   SECRET_KEY: 1
   MODE_DEBUG: 1
 jobs:
@@ -39,10 +39,10 @@ jobs:
 
      - name: install dependencies
        run: poetry install
-     - uses: actions/setup-sqlite@v1
-       with:
-         sqlite-version: 3.40.0
-         sqlite-year: 2022
+#     - uses: actions/setup-sqlite@v1
+#       with:
+#         sqlite-version: 3.40.0
+#         sqlite-year: 2022
      - name: start server
        run: poetry run python3 manage.py runserver
        working-directory: moviereviews/
