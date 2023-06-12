@@ -1,0 +1,634 @@
+{
+	"info": {
+		"_postman_id": "db0bba7c-14f5-483b-b9ba-72e2854b41e3",
+		"name": "MovieReviews_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26809614",
+		"_collection_link": "https://red-desert-267464.postman.co/workspace/m-pt1-63-23~6d60621f-c058-4d95-82c9-190d0283077e/collection/26809614-db0bba7c-14f5-483b-b9ba-72e2854b41e3?action=share&creator=26809614&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Create Movie",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "A Space Oddyssey",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about space travel",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/2001_A_Space_Odyssey_1968.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/movie/create/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"movie",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Movie",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Drama about mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/movie/create/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"movie",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password1",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "password1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"23c30cd3-49e8-433a-a460-0aed26f0a92a",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read All Movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about Mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/movies/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home Page",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about Mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/home/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"home",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search movie",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about Mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/home/?searchMovie=godfather",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"home",
+						""
+					],
+					"query": [
+						{
+							"key": "searchMovie",
+							"value": "godfather"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read One Movie",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about Mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/movie/23c30cd3-49e8-433a-a460-0aed26f0a92a/detail",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"movie",
+						"23c30cd3-49e8-433a-a460-0aed26f0a92a",
+						"detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie Detail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about Mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/23c30cd3-49e8-433a-a460-0aed26f0a92a",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"23c30cd3-49e8-433a-a460-0aed26f0a92a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Review",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about Mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"23c30cd3-49e8-433a-a460-0aed26f0a92a",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Review",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "form",
+							"value": "sfsfsfsasfa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"23c30cd3-49e8-433a-a460-0aed26f0a92a",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Review Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "form",
+							"value": "sfsfsfsasfa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/review/5",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"review",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Review",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "form",
+							"value": "sfsfsfsasfa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/review/5/delete",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"review",
+						"5",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign up",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server}}/accounts/signupaccount/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"accounts",
+						"signupaccount",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server}}/accounts/login/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"accounts",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/accounts/login/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"accounts",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Movie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Godfather",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Movie about Mafia",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/Godfather_poster.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server}}/movie/25ce9eb4-aee7-4be4-8f71-ea2758e15667/delete/",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"movie",
+						"25ce9eb4-aee7-4be4-8f71-ea2758e15667",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
