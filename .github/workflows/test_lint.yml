@@ -47,9 +47,9 @@ jobs:
        run: poetry run python3 manage.py migrate
        working-directory: moviereviews/
 
-     - name: Start server
-       run: poetry run python3 manage.py runserver
-       working-directory: moviereviews/
+#     - name: Start server
+#       run: poetry run python3 manage.py runserver
+#       working-directory: moviereviews/
 
      - name: Testing
        run: poetry run pytest
