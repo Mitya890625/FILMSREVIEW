@@ -23,6 +23,7 @@ def test_signup_form() -> None:
     resp = httpx.post(url=url, data=user_data)
     resp.status_code = 302
 
+
 def test_user_behavior_client() -> None:
     url: str = f"{SERVER}/home/"
     resp = httpx.get(url)
