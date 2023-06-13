@@ -1,7 +1,8 @@
 import httpx
 import json
+from pathlib import Path
 
-
+MEDIA_DIR = Path(__file__).resolve().parent / "moviereviews" / "media"
 SERVER = "http://localhost:8000"
 
 
@@ -42,6 +43,9 @@ def test_user_behavior_client() -> None:
     session_id = resp.cookies["sessionid"]
     headers = {"Cookie": f"sessionid={session_id}"}
     with httpx.Client(headers=headers) as client:
+        # USER GETS MOVIE ID
+        url_get: str = f"{SERVER}/movies/"
+        resp = httpx.get(url_get)
         # USER VISITS PARTICULAR MOVIE
         url = f"{SERVER}/23c30cd3-49e8-433a-a460-0aed26f0a92a"
         resp = client.get(url)
@@ -85,7 +89,7 @@ def test_movie_crud() -> None:
         "description": "opus mupus",
     }
     new_movie_image = {
-        "image": open("C:/Users/Митя/Desktop/POSTERS_ФИЛЬМЫ/back-to-the-future_poster.jpg", 'rb') # noqa E501
+        "image": open(f"{MEDIA_DIR} / back-to-the-future_poster.jpg", 'rb') # noqa E501
     }
     resp = httpx.post(url=f"{SERVER}/movie/create/", data=new_movie_data, files=new_movie_image) # noqa E501
     assert resp.status_code == 201

@@ -69,9 +69,7 @@ WSGI_APPLICATION = 'moviereviews.wsgi.application'
 DATABASE_URL = env('DATABASE_URL')
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL),
-    # 'postgres': dj_database_url.parse(DATABASE_URL)
 }
-# DATABASE_ROUTERS = ['routers.db_routers.PostgresRouter', ]
 
 
 # Password validation
