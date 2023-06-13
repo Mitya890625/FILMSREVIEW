@@ -41,7 +41,7 @@ jobs:
        run: poetry install
 
      - name: Make migrations
-       run: poetry run python3 manage.py migrate --database=testing
+       run: poetry run python3 manage.py migrate
        working-directory: moviereviews/
 
      - name: Start server
