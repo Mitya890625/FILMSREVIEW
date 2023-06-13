@@ -51,6 +51,16 @@ def test_user_behavior_client() -> None:
     }
     resp = httpx.post(url=url, data=user_data)
     resp.status_code = 302
+    #USER LOGINS
+    url: str = f"{SERVER}/accounts/login/"
+    resp = httpx.get(url)
+    assert resp.status_code == 200
+    user_data = {
+        "username": "user1",
+        "password": "password1"
+    }
+    resp = httpx.post(url=url, data=user_data)
+    resp.status_code = 302
     session_id = resp.cookies["sessionid"]
     headers = {"Cookie": f"sessionid={session_id}"}
     with httpx.Client(headers=headers) as client:
