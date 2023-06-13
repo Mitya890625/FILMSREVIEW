@@ -40,11 +40,8 @@ jobs:
      - name: Install dependencies
        run: poetry install
 
-     - name: Set up Sqlite3
-       run: sqlite3 database.db
-
      - name: Make migrations
-       run: poetry run python3 manage.py migrate
+       run: poetry run python3 manage.py migrate --database=testing
        working-directory: moviereviews/
 
      - name: Start server

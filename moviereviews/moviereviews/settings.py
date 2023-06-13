@@ -74,6 +74,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASE_ROUTER = ['db_router.TestingRouter']
 
 
 # Password validation
