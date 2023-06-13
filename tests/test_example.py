@@ -51,7 +51,7 @@ def test_user_behavior_client() -> None:
     }
     resp = httpx.post(url=url, data=user_data)
     resp.status_code = 302
-    #USER LOGINS
+    # USER LOGINS
     url: str = f"{SERVER}/accounts/login/"
     resp = httpx.get(url)
     assert resp.status_code == 200
