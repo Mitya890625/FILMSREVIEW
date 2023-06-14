@@ -56,11 +56,11 @@ def test_user_behavior_client() -> None:
     headers = {"Cookie": f"sessionid={session_id}"}
     with httpx.Client(headers=headers) as client:
         # USER VISITS PARTICULAR MOVIE
-        url = f"{SERVER}/{movie_id}"
+        url = f"{SERVER}/{movie_id}/"
         resp = client.get(url)
         assert resp.status_code == 200
         # USER WANTS TO ADD REVIEW
-        url = f"{SERVER}/{movie_id}/create"
+        url = f"{SERVER}/{movie_id}/create/"
         resp = client.get(url)
         assert resp.status_code == 200
 
