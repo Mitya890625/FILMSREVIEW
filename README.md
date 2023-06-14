@@ -23,8 +23,11 @@
 ### Добавить .env файл в директорию с settings.py 
 
 Требуемые переменные окружения и их значения:
+
 DATABASE_URL=sqlite://./db.sqlite3
+
 MODE_DEBUG=1
+
 SECRET_KEY=1
 
 ### Перейти в директорию с manage.py
