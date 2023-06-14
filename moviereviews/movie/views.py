@@ -13,6 +13,8 @@ def base_page(request) -> None:
             request,
             'movie/basepage.html'
     )
+
+
 def home(request: HttpRequest) -> None:
     if search_term := request.GET.get('searchMovie'):
         movies = Movie.objects.filter(title__icontains=search_term)
