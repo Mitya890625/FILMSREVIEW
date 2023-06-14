@@ -35,8 +35,9 @@ def test_user_behavior_client() -> None:
         "title": "movie1",
         "description": "opus mupus",
     }
+    movie_image = MEDIA_DIR / "back-to-the-future_poster.jpg"
     new_movie_image = {
-        "image": open(f"{MEDIA_DIR_FILE}", 'rb') # noqa E501
+        "image": open(f"{movie_image}", 'rb') # noqa E501
     }
     resp = httpx.post(url=f"{SERVER}/movie/create/", data=new_movie_data, files=new_movie_image) # noqa E501
     movie_id = json.loads(resp.text).get('id')
