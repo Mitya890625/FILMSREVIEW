@@ -1,4 +1,4 @@
-# **Movie review application**
+# **Movie review application website**
 
 
 
@@ -29,6 +29,7 @@ DATABASE_URL=sqlite://./db.sqlite3
 MODE_DEBUG=1
 
 SECRET_KEY=1
+
 
 ### Перейти в директорию с manage.py
 
