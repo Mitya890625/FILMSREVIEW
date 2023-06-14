@@ -4,32 +4,35 @@
 
 ## Установка проекта
 
+
+### Скачать проект с гитхаба
 -git clone <https://github.com/Mitya890625/FILMSREVIEW.git>
 
-## nastroit' virtual'noe okrujenie v papke s proektom
+### Настроить виртуальное окружение в папке с проектом
 -poetry config virtualenvs.in-project true
 
-## Установка виртуального окружения и зависимостей
+### Установка виртуального окружения и зависимостей
 
 -poetry install
 
 
-## Активация вирутального окружения
+### Активация вирутального окружения
 
 -poetry shell
 
-## Dobavit .env file v dir s settings.py 
+### Добавить .env файл в директорию с settings.py 
 
-Znacheniya peremennih okrujenia mojno posmotret' v .github/workflows/test_lint.yml
+Требуемые переменные окружения и их значения:
+DATABASE_URL=sqlite://./db.sqlite3
+MODE_DEBUG=1
+SECRET_KEY=1
 
-## Перейти в папку с manage.py
+### Перейти в директорию с manage.py
 
--cd moviereviews
-
-## Primenit' migracii(sozdat DB)
+### Создать базу данных и заполнить таблицами
 
 -poetry run python manage.py migrate
 
-## Запустить сервер
+### Запустить сервер
 
 poetry run python manage.py runserver
