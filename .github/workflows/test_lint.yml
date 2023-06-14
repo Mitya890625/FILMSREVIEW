@@ -1,5 +1,5 @@
 name: Linting and Testing
-on: push
+on: [push, pull request]
 env:
   DATABASE_URL: sqlite://./db.sqlite3
   SECRET_KEY: ${{secrets.SECRET_KEY}}
