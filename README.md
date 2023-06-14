@@ -6,6 +6,8 @@
 
 -git clone <https://github.com/Mitya890625/FILMSREVIEW.git>
 
+## nastroit' virtual'noe okrujenie v papke s proektom
+-poetry config virtualenvs.in-project true
 
 ## Установка виртуального окружения и зависимостей
 
@@ -17,11 +19,14 @@
 -poetry shell
 
 
-## Перейти в папку с проектом
+## Перейти в папку с manage.py
 
 -cd moviereviews
 
+## Primenit' migracii(sozdat DB)
+
+-poetry run python manage.py migrate
 
 ## Запустить сервер
 
-poetry run python/python3 manage.py runserver
+poetry run python manage.py runserver
