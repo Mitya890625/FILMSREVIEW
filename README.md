@@ -18,6 +18,9 @@
 
 -poetry shell
 
+## Dobavit .env file v dir s settings.py 
+
+Znacheniya peremennih okrujenia mojno posmotret' v .github/workflows/test_lint.yml
 
 ## Перейти в папку с manage.py
 
