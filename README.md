@@ -32,7 +32,7 @@ SECRET_KEY=1
 
 ### Перейти в директорию с manage.py
 
-### Создать базу данных и заполнить таблицами
+### Выполнить миграцию
 
 -poetry run python manage.py migrate
 
