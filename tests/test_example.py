@@ -2,7 +2,7 @@ import httpx
 import json
 from pathlib import Path
 
-MEDIA_DIR_FILE = Path(__file__).resolve().parent.parent / "moviereviews" / "media" / "movie"/ "images" / "back-to-the-future_poster.jpg" # noqa E501
+MEDIA_DIR = Path(__file__).resolve().parent.parent / "moviereviews" / "media" / "movie"/ "images"  # noqa E501
 SERVER = "http://localhost:8000"
 
 
@@ -42,7 +42,7 @@ def test_user_behavior_client() -> None:
     movie_id = json.loads(resp.text).get('id')
     assert resp.status_code == 201
     # USER LOGINS
-    url: str = f"{SERVER}/accounts/login/"
+    url = f"{SERVER}/accounts/login/"
     resp = httpx.get(url)
     assert resp.status_code == 200
     user_data = {
@@ -65,19 +65,39 @@ def test_user_behavior_client() -> None:
 
 
 def test_movie_crud() -> None:
+    # READ ALL MOVIES
     url_get: str = f"{SERVER}/movies/"
     resp = httpx.get(url_get)
     assert resp.status_code == 200
+    # CREATE NEW MOVIE
     new_movie_data = {
         "title": "movie1",
         "description": "opus mupus",
     }
+    movie_image = MEDIA_DIR / "back-to-the-future_poster.jpg"
     new_movie_image = {
-        "image": open(f"{MEDIA_DIR_FILE}", 'rb') # noqa E501
+        "image": open(f"{movie_image}", 'rb')
     }
     resp = httpx.post(url=f"{SERVER}/movie/create/", data=new_movie_data, files=new_movie_image) # noqa E501
     assert resp.status_code == 201
+    # GET MOVIE ID
     movie_id = json.loads(resp.text).get('id')
+    # READ ONE MOVIE
+    url = f"{SERVER}/movie/{movie_id}/detail/"
+    resp = httpx.get(url)
+    assert resp.status_code == 200
+    # UPDATE MOVIE
+    update_movie_data = {
+        "title": "movie1",
+        "description": "opus mupus",
+    }
+    movie_image = MEDIA_DIR / "2001_A_Space_Odyssey_1968.png"
+    update_movie_image = {
+        "image": open(f"{movie_image}", 'rb')
+    }
+    resp = httpx.put(url=f"{SERVER}/movie/{movie_id}/update/", data=update_movie_data, files=update_movie_image) # noqa E501
+    assert resp.status_code == 200
+    # DELETE MOVIE
     url: str = f"{SERVER}/movie/{movie_id}/delete/"
     resp = httpx.delete(url)
     assert resp.status_code == 204

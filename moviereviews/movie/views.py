@@ -8,6 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 
+def base_page(request) -> None:
+    return render(
+            request,
+            'movie/basepage.html'
+    )
 def home(request: HttpRequest) -> None:
     if search_term := request.GET.get('searchMovie'):
         movies = Movie.objects.filter(title__icontains=search_term)

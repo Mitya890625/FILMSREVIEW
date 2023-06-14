@@ -105,30 +105,30 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "user1",
+							"value": "user",
 							"type": "text"
 						},
 						{
-							"key": "password",
-							"value": "password1",
+							"key": "password1",
+							"value": "password",
 							"type": "text"
 						},
 						{
 							"key": "password2",
-							"value": "password1",
-							"type": "text",
-							"disabled": true
+							"value": "password",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{server}}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create",
+					"raw": "{{server}}/accounts/signupaccount/",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
-						"23c30cd3-49e8-433a-a460-0aed26f0a92a",
-						"create"
+						"accounts",
+						"signupaccount",
+						""
 					]
 				}
 			},
@@ -395,83 +395,21 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "form",
-							"value": "sfsfsfsasfa",
+							"key": "",
+							"value": "",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{server}}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create",
+					"raw": "{{server}}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create/",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"23c30cd3-49e8-433a-a460-0aed26f0a92a",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add Review Copy",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "form",
-							"value": "sfsfsfsasfa",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{server}}/review/5",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"review",
-						"5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Review",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "form",
-							"value": "sfsfsfsasfa",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{server}}/review/5/delete",
-					"host": [
-						"{{server}}"
-					],
-					"path": [
-						"review",
-						"5",
-						"delete"
+						"create",
+						""
 					]
 				}
 			},
@@ -589,13 +527,13 @@
 					]
 				},
 				"url": {
-					"raw": "{{server}}/movie/25ce9eb4-aee7-4be4-8f71-ea2758e15667/delete/",
+					"raw": "{{server}}/movie/5a77c270-7659-4040-8c8e-94eed9f9052b/delete/",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"movie",
-						"25ce9eb4-aee7-4be4-8f71-ea2758e15667",
+						"5a77c270-7659-4040-8c8e-94eed9f9052b",
 						"delete",
 						""
 					]
