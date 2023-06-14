@@ -6,7 +6,7 @@ MEDIA_DIR_FILE = Path(__file__).resolve().parent.parent / "moviereviews" / "medi
 SERVER = "http://localhost:8000"
 
 
-def test_get() -> None:
+def test_get_home_page() -> None:
     url: str = f"{SERVER}/home/"
     resp: httpx = httpx.get(url)
     assert resp.status_code == 200
@@ -16,13 +16,14 @@ def test_signup_form() -> None:
     url: str = f"{SERVER}/accounts/signupaccount/"
     resp = httpx.get(url)
     assert resp.status_code == 200
-    user_data = {
-        "username": "user3",
-        "password": "password3",
-        "password2": "password3",
-    }
-    resp = httpx.post(url=url, data=user_data)
-    resp.status_code = 302
+    with httpx.Client() as client:
+        user_data = {
+            "username": "user1",
+            "password1": "password1",
+            "password2": "password1",
+        }
+        resp = client.post(url=url, data=user_data)
+        resp.status_code = 302
 
 
 def test_user_behavior_client() -> None:
@@ -40,17 +41,6 @@ def test_user_behavior_client() -> None:
     resp = httpx.post(url=f"{SERVER}/movie/create/", data=new_movie_data, files=new_movie_image) # noqa E501
     movie_id = json.loads(resp.text).get('id')
     assert resp.status_code == 201
-    # USER SIGNUPS
-    url: str = f"{SERVER}/accounts/signupaccount/"
-    resp = httpx.get(url)
-    assert resp.status_code == 200
-    user_data = {
-        "username": "user1",
-        "password": "password1",
-        "password2": "password1",
-    }
-    resp = httpx.post(url=url, data=user_data)
-    resp.status_code = 302
     # USER LOGINS
     url: str = f"{SERVER}/accounts/login/"
     resp = httpx.get(url)
@@ -64,9 +54,6 @@ def test_user_behavior_client() -> None:
     session_id = resp.cookies["sessionid"]
     headers = {"Cookie": f"sessionid={session_id}"}
     with httpx.Client(headers=headers) as client:
-        # USER GETS MOVIE ID
-        url_get: str = f"{SERVER}/movies/"
-        resp = httpx.get(url_get)
         # USER VISITS PARTICULAR MOVIE
         url = f"{SERVER}/{movie_id}"
         resp = client.get(url)
@@ -75,30 +62,6 @@ def test_user_behavior_client() -> None:
         url = f"{SERVER}/{movie_id}/create"
         resp = client.get(url)
         assert resp.status_code == 200
-# def test_user_behavior() -> None:
-#     # USER VISITS HOMEPAGE
-#     url: str = f"{SERVER}/home/"
-#     resp = httpx.get(url)
-#     assert resp.status_code == 200
-#     # USER LOGINS
-#     url: str = f"{SERVER}/accounts/login/"
-#     resp = httpx.get(url)
-#     assert resp.status_code == 200
-#     user_data = {
-#         "username": "user3",
-#         "password": "password3"
-#              }
-#     resp = httpx.post(url=url, data=user_data)
-#     resp.status_code = 302
-#     session_id = resp.cookies["sessionid"]
-#     # USER VISITS PARTICULAR MOVIE
-#     url = f"{SERVER}/23c30cd3-49e8-433a-a460-0aed26f0a92a"
-#     resp = httpx.get(url, headers={"Cookie": f"sessionid={session_id}"})
-#     assert resp.status_code == 200
-#     # USER WANTS TO ADD REVIEW
-#     url = f"{SERVER}/23c30cd3-49e8-433a-a460-0aed26f0a92a/create"
-#     resp = httpx.get(url, headers={"Cookie": f"sessionid={session_id}"})
-#     assert resp.status_code == 200
 
 
 def test_movie_crud() -> None:
@@ -118,15 +81,3 @@ def test_movie_crud() -> None:
     url: str = f"{SERVER}/movie/{movie_id}/delete/"
     resp = httpx.delete(url)
     assert resp.status_code == 204
-
-
-def test_get_review() -> None:
-    url: str = f"{SERVER}/accounts/login/"
-    resp = httpx.get(url)
-    assert resp.status_code == 200
-    user_data = {
-        "username": "user3",
-        "password": "password3"
-    }
-    resp = httpx.post(url=url, data=user_data)
-    resp.status_code = 302
