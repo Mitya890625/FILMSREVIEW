@@ -36,6 +36,6 @@ SECRET_KEY=1
 
 -poetry run python manage.py migrate
 
-### Запустить сервер
+### Запустить сервер!
 
 poetry run python manage.py runserver
